@@ -1,0 +1,102 @@
+{
+  "window.zoomLevel": 0,
+  "editor.fontSize": 22,
+  "editor.tabSize": 4,
+  "files.autoSave": "afterDelay",
+  "editor.wordWrap": "on",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "highlight-matching-tag.styles": {
+    "opening": {
+      "left": {
+        "custom": {
+          "borderWidth": "0 0 0 3px",
+          "borderStyle": "solid",
+          "borderColor": "yellow",
+          "borderRadius": "5px",
+          "overviewRulerColor": "white"
+        }
+      },
+      "right": {
+        "custom": {
+          "borderWidth": "0 3px 0 0",
+          "borderStyle": "solid",
+          "borderColor": "yellow",
+          "borderRadius": "5px",
+          "overviewRulerColor": "white"
+        }
+      }
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "comments": "#fca311"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.colorTheme": "Community Material Theme Ocean High Contrast",
+  "liveSassCompile.settings.autoprefix": [],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": null
+    }
+  ],
+
+  "materialTheme.accent": "Breaking Bad",
+  "color-highlight.markerType": "dot-before",
+  "http.proxyAuthorization": null,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "php": "C:\\xampp\\php\\php7.3.12\\php.exe",
+    "python": "python",
+    "perl": "perl",
+    "ruby": "C:\\Ruby23-x64\\bin\\ruby.exe",
+    "go": "go run",
+    "html": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"",
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+  },
+
+  "code-runner.clearPreviousOutput": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.jediEnabled": false,
+
+  // "editor.fontFamily": "Fira Code",
+
+  // "editor.fontLigatures": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "explorer.sortOrder": "type",
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "phase",
+  "files.trimFinalNewlines": true,
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.mouseWheelZoom": true,
+  "files.insertFinalNewline": true,
+  "editor.multiCursorModifier": "alt",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "auto-rename-tag.activationOnLanguage": ["*"],
+  "material-icon-theme.folders.color": "#F09B3A",
+  "material-icon-theme.folders.theme": "classic",
+  "material-icon-theme.saturation": 0.5,
+  "editor.linkedEditing": true,
+  "git-autoconfig.configList": [
+    {
+      "user.email": "atrimoy.saha9998@gmail.com",
+      "user.name": "Master-Timo"
+    }
+  ]
+}

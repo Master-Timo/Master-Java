@@ -1,0 +1,4 @@
+1)Input a set of integers in an array and arrange them in ascending order.
+
+2)Input a set of strings through CLI and generate an exception if any of the strings begin with 
+small letter. Write an user defined class to handle the exception

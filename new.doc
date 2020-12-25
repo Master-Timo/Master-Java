@@ -1,0 +1,39 @@
+[14:51] SILADITYA MUKHERJEE
+Understanding thread prioritiesUnderstanding the Thread priorities is next important step in learning Multi-threading 
+nd specially how yield() works.
+Remember that all the threads carry normal priority when a priority is not specified.
+Priorities can be specified from 1 to 10. 10 being the highest, 1 being the lowest priority and 5 being the normal 
+priority.Remember that the thread with highest priority will be given preference in execution. But there is no 
+guarantee that it will be in running state the moment it starts.Always the currently executing thread might have the 
+higher priority when compared to the threads in the pool who are waiting for their chance.It is the thread scheduler 
+which decides what thread should be executed.t.setPriority() can be used to set the priorities for the threads.
+emember that the priorities should be set before the threads start method is invoked.
+You can use the constants, MIN_PRIORITY,MAX_PRIORITY and NORM_PRIORITY for setting priorities.
+Now when we have some basic understanding of thread scheduling and thread priorities, 
+let’s jump into subject.yield() methodTheoretically, to ‘yield’ means to let go, to give up, to surrender. 
+A yielding thread tells the virtual machine that it’s willing to let other threads be scheduled in its place. This indicates that it’s not doing something too critical. Note that it’s only a hint, though, and not guaranteed to have any effect at all.yield() is defined as following in Thread.java./**A hint to the scheduler that the current thread is willing to yield its current use of a processor. The scheduler is free to ignore this hint. Yield is a heuristic attempt to improve relative progression between threads that would otherwise over-utilize a CPU.Its use should be combined with detailed profiling and benchmarking to ensure that it actually has the desired effect.   */public static native void yield();The native keyword acts as a link between JAVA language and a chunk of code or library written in different languages except for JAVA which may be dependent on the machine you are operating on. If the native keyword is applied to a method, then that means the method will be implemented using native code written in some other language (like C or C++) via JNI (JAVA native interface).
+
+
+[14:51] SILADITYA MUKHERJEE
+The above note provides information about yield method in Java
+
+[14:52] SILADITYA MUKHERJEE
+Let’s list down important points from above definition:Yield is a Static method and Native too.Yield tells the currently executing thread to give a chance to the threads that have equal priority in the Thread Pool.There is no guarantee that Yield will make the currently executing thread to runnable state immediately.It can only make a thread from Running State to Runnable State, not in wait or blocked state.yield() method example usageIn below example program, I have created two threads named producer and consumer for no specific reason. Producer is set to minimum priority and consumer is set to maximum priority. I will run below code with/without commenting the line Thread.yield(). Without yield(), though the output changes sometimes, but usually first all consumer lines are printed and then all producer lines.
+
+[14:52] SILADITYA MUKHERJEE
+With using yield() method, both prints one line at a time and pass the chance to another thread, almost all the time.public class YieldExample{​​   public static void main(String[] args)   {​​      Thread producer = new Producer();      Thread consumer = new Consumer();             producer.setPriority(Thread.MIN_PRIORITY); //Min Priority      consumer.setPriority(Thread.MAX_PRIORITY); //Max Priority             producer.start();      consumer.start();   }​​}​​ class Producer extends Thread{​​   public void run()   {​​      for (int i = 0; i < 5; i++)      {​​         System.out.println("I am Producer : Produced Item " + i);         Thread.yield();      }​​   }​​}​​ class Consumer extends Thread{​​   public void run()   {​​      for (int i = 0; i < 5; i++)      {​​         System.out.println("I am Consumer : Consumed Item " + i);         Thread.yield();      }​​   }​​}​​Output of above program “without” yield() methodI am Consumer : Consumed Item 0 I am Consumer : Consumed Item 1 I am Consumer : Consumed Item 2 I am Consumer : Consumed Item 3 I am Consumer : Consumed Item 4 I am Producer : Produced Item 0 I am Producer : Produced Item 1 I am Producer : Produced Item 2 I am Producer : Produced Item 3 I am Producer : Produced Item 4Output of above program “with” yield() method addedI am Producer : Produced Item 0 I am Consumer : Consumed Item 0 I am Producer : Produced Item 1 I am Consumer : Consumed Item 1 I am Producer : Produced Item 2 I am Consumer : Consumed Item 2 I am Producer : Produced Item 3 I am Consumer : Consumed Item 3 I am Producer : Produced Item 4 I am Consumer : Consumed Item 4
+
+[14:53] SILADITYA MUKHERJEE
+The above shows how and what yield does based on an example of yield method
+
+[14:53] SILADITYA MUKHERJEE
+Program on join() method and its difference with yield
+
+[14:54] SILADITYA MUKHERJEE
+join() methodThe join() method of a Thread instance can be used to “join” the start of a thread’s execution to the end of another thread’s execution so that a thread will not start running until another thread has ended. If join() is called on a Thread instance, the currently running thread will block until the Thread instance has finished executing.//Waits for this thread to die.  public final void join() throws InterruptedExceptionGiving a timeout within join(), will make the join() effect to be nullified after the specific timeout. When the timeout is reached, the main thread and taskThread are equally probable candidates to execute. However, as with sleep, join is dependent on the OS for timing, so you should not assume that join will wait exactly as long as you specify.Like sleep, join responds to an interrupt by exiting with an InterruptedException.join() method example usagepublic class JoinExample{​​   public static void main(String[] args) throws InterruptedException   {​​      Thread t = new Thread(new Runnable()         {​​            public void run()            {​​               System.out.println("First task started");               System.out.println("Sleeping for 2 seconds");               try               {​​                  Thread.sleep(2000);               }​​ catch (InterruptedException e)               {​​                  e.printStackTrace();               }​​               System.out.println("First task completed");            }​​         }​​);      Thread t1 = new Thread(new Runnable()         {​​            public void run()            {​​               System.out.println("Second task completed");            }​​         }​​);      t.start(); // Line 15      t.join(); // Line 16      t1.start();   }​​}​​ 
+
+[14:54] SILADITYA MUKHERJEE
+Its output
+
+[14:54] SILADITYA MUKHERJEE
+Output: First task startedSleeping for 2 secondsFirst task completedSecond task completed
